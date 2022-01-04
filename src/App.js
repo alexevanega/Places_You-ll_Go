@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Navbar from './components/Navbar';
+import {Routes, Route} from 'react-router-dom';
+import WWD from './views/WWD';
+import Map from './views/Map';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+
+  constructor() {
+    super();
+    this.state = {states: ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Conneticut','Delaware','Florida',
+  'Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts',
+'Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico',
+'New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina',
+'South Dakota','Tennessee','Texas','Utah','Virginia','Vermont','Washington','West Virginia','Wisconsin','Wyoming']
+  }  
+
 }
 
-export default App;
+
+  render() {
+    return (
+      <div>
+        <Navbar />
+        <h1>Oh, The Places You'll Go!</h1>
+        <Routes>
+          <Route path='/WWD' element={<WWD />}/>
+          <Route path='/Map' element={<Map states={this.state.states}/>}/>
+        </Routes>
+      </div>
+    )
+  }
+}
+
